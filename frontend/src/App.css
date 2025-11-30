@@ -1,0 +1,577 @@
+html{
+  scroll-behavior: smooth;
+}
+/* ======== GLOBAL ======== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f7fbff; /* biru muda lembut */
+  color: #333;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ======== HEADER ======== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease, box-shadow 0.3s;
+  z-index: 100;
+  background: transparent; /* awalnya transparan */
+  box-shadow: none;        /* hilangkan shadow awal */
+}
+header.scrolled {
+  background: #f7fbff; /* putih saat di-scroll */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* shadow halus saat di-scroll */
+}
+
+header.scrolled nav a {
+  color: #333; /* teks gelap saat di-scroll */
+}
+header.scrolled nav a:hover {
+  color: #1a73e8; /* biru saat hover */
+}
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a73e8; /* biru elegan utama */
+  letter-spacing: 1px;
+}
+
+nav a {
+  text-decoration: none;
+  margin-left: 25px;
+  color: #ffff;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: #1a73e8;
+}
+
+.btn-login {
+  background: #1a73e8;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.btn-login:hover {
+  background: #155fc4;
+}
+
+/* ======== HERO ======== */
+.hero {
+  text-align: center;
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+}
+.hero {
+  background: url('../src/assets/backgroundKos.png') no-repeat center center/cover;
+  position: relative;
+}
+.hero-text {
+  color: #ffffff; /* putih supaya kontras sama background */
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6); /* bikin teks lebih menonjol */
+  position: relative;
+  z-index: 2;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35); /* overlay gelap tipis */
+  z-index: 1;
+}
+
+.hero h1,
+.hero p,
+.hero .search-box {
+  position: relative; /* biar di atas overlay */
+  z-index: 2;
+  color: #fff; /* biar terbaca di atas foto */
+}
+
+.search-box input {
+  width: 90%;
+  max-width: 400px;
+  padding: 5px 20px;           /* padding lebih nyaman */
+  border-radius: 25px;          /* sudut lebih lembut */
+  border: 1px solid #bcd3f7;   /* border halus */
+  outline: none;
+  font-size: 16px;
+  color: #333;                  /* teks lebih gelap */
+  background-color: rgba(255,255,255,0.9); /* background agak terang di atas gambar */
+  transition: all 0.3s ease;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-box input::placeholder {
+  color: #666;                  /* placeholder lebih gelap dan jelas */
+  font-weight: 500;
+  opacity: 1;                   /* pastikan muncul di semua browser */
+}
+
+.search-box input:focus {
+  border-color: #1a73e8;        /* biru saat fokus */
+  box-shadow: 0 4px 12px rgba(26,115,232,0.3); /* efek shadow lembut */
+  background-color: rgba(255,255,255,1); /* lebih terang saat fokus */
+}
+
+
+/* ======== KOS LIST ======== */
+.list-kos {
+  padding: 60px 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+}
+
+.list-kos h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 40px;
+  color: #1a73e8;
+  text-shadow: 3px 3px 6px rgba(33, 29, 29, 0.8); 
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(-8px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.card h3 {
+  color: #1a1a1a;
+  font-size: 20px;
+}
+
+.card p {
+  color: #666;
+  margin-top: 5px;
+}
+
+.card button {
+  margin-top: 10px;
+  background-color: #1a73e8;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #155fc4;
+}
+
+/* ======== UPLOAD SECTION ======== */
+.upload-section {
+  background-color: #f0f7ff;
+  padding: 60px 40px;
+  text-align: center;
+  border-top: 2px solid #d0e3ff;
+  margin-top: 50px;
+  background: url('../src/assets/bg_promosi.png') no-repeat center center/cover;
+  position: relative;
+}
+
+.upload-section h2 {
+  color: #1a73e8;
+  font-size: 28px;
+  text-shadow: 3px 3px 6px rgba(33, 29, 29, 0.8); /* bayangan putih */
+}
+
+.upload-form {
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.upload-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: #444;
+  font-weight: 500;
+}
+
+.upload-form input,
+.upload-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bcd3f7;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.upload-form input[type="file"] {
+  border: none;
+}
+
+.upload-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1a73e8;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.upload-form button:hover {
+  background-color: #155fc4;
+}
+
+/* ======== Contact Section ======== */
+.contact-section {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f7faff; /* Biru muda sangat soft */
+  margin-top: 30px;
+  min-height: 80vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-section {
+  background: url('../src/assets/bg-contact.png') no-repeat center center/cover;
+  position: relative;
+  
+}
+
+
+.contact-section h2 {
+  font-size: 32px;
+  color: #1a73e8;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  
+
+}
+
+.contact-card {
+  background: white;
+  padding: 30px 25px;
+  border-radius: 15px;
+  width: 260px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+  cursor: default;
+  margin-bottom: 40px;
+  
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.contact-icon {
+  font-size: 40px;
+  color: #1a73e8;
+  margin-bottom: 10px;
+}
+
+/* ======== Testimoni Section ======== */
+.testimonial-section {
+  padding: 70px 20px;
+  text-align: center;
+  background: #f6f9ff;
+}
+
+.testimonial-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1a73e8;
+  margin-bottom: 40px;
+}
+
+.testimonial-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  width: 300px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  transition: 0.3s;
+  border: 1px solid #e6e6e6;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.testimonial-text {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.testimonial-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.testimonial-user img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.testimonial-user h4 {
+  margin: 0;
+  color: #1a73e8;
+  font-weight: bold;
+}
+
+.stars {
+  font-size: 14px;
+  color: #f4c430; /* warna emas */
+}
+
+
+
+/* ======== POPUP (LOGIN/REGISTER) ======== */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  width: 350px;
+  text-align: center;
+  position: relative;
+}
+
+.popup-content h2 {
+  color: #1a73e8;
+  margin-bottom: 20px;
+}
+
+.popup-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #bcd3f7;
+  border-radius: 8px;
+}
+
+.popup-content button {
+  background-color: #1a73e8;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  background-color: #155fc4;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+/* ======== FOOTER ======== */
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #fff;
+  color: #777;
+  margin-top: 0;
+  border-top: 1px solid #e2e2e2;
+  width: 100%;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    padding: 15px 20px;
+  }
+  nav {
+    margin-top: 10px;
+  }
+  .list-kos {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+  .search-box input {
+    width: 95%;
+  }
+}
+
+.logoInfokos {
+  width: 85px;     /* atur sesuai logo */
+  margin: 0;
+  padding: 0;
+
+
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0;           /* atur jarak kecil, bisa 0 kalau mau super nempel */
+}
+
+.logoText {
+  margin-left: -25px;
+  margin-bottom: -5px;
+  padding: 0;
+  font-size: 24px; /* kalau terlalu besar, kecilkan */
+  letter-spacing: 0;
+  font-weight: 700;
+}
+/* Container avatar */
+.profile-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Avatar kecil bulat */
+.avatar {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  position:fixed;
+  margin-left:-175px;
+  margin-top:12px
+}
+
+/* Popup */
+.profile-popup {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: white;
+  padding: 12px 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+  min-width: 180px;
+  z-index: 999;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Tombol close (X) */
+.close-popup {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+}
+
+.profile-popup p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+    
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
